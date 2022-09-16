@@ -1,0 +1,22 @@
+html(lang="en")
+    head
+        include partials/head.pug
+    body
+        .container
+            header
+                include partials/header.pug
+                block content
+            main
+                .jumbotron
+                    h2 Ingresa los datos del producto
+                    form(method='POST' action='/')
+                        .form-group
+                            label(for='title') title
+                            input.form-control(type='text' name='title' required)
+                        .form-group
+                            label(for='price') precio 
+                            input.form-control(type='number' name='precio' required)
+                        .form-group
+                            label(for='thumbnail') IMG 
+                            input.form-control(type='thumbnail' name='thumbnail' required)
+                        button.btn.btn-primary(type='submit') Enviar

@@ -12,11 +12,20 @@ app.set('view engine', 'pug')
 
 
 app.get("/productos", async (req, res) => {
+    try{
+        const data =await DB.getAll()
+        res.render("productos",{allProducts:data})
+    }catch(e){
+        res.send({error: e})
+    }
+})
 
-    const data =await DB.getAll()
-    console.log(data)
-    res.render("productos",{productos:data})
-
+app.post("/", async (req, res) =>{
+    const data = await DB.save(req.body)
+    res.render("ingresar",{data})
+})
+app.get("/", async (req, res) =>{
+    res.render("ingresar")
 })
 
 app.listen(8080,()=>{
